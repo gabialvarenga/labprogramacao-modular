@@ -26,10 +26,8 @@ public class App {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("-------------Cadastro de pessoas-------------");
-        
-
         for (int i = 0; i < TAM_VETOR; i++) {
-            System.out.print("Deseja continuar com o cadastro? (S/N): ");
+            System.out.print("Deseja realizar um cadastro? (S/N): ");
             String continuar = sc.nextLine().trim().toUpperCase();
 
             if (continuar.equals("N")) {
@@ -90,6 +88,13 @@ public class App {
             vect[i] = pessoa;
 
             System.out.println("Cadastro da pessoa n°" + (i + 1) + " com sucesso!");
+        }
+
+        System.out.println("\n-------------Lista de Pessoas Cadastradas-------------");
+        for (Pessoa pessoa : vect) {
+            if (pessoa != null) {
+                System.out.println(pessoa); 
+            }
         }
         sc.close();
     }

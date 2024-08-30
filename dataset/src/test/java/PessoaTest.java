@@ -1,10 +1,8 @@
-package test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import business.Pessoa;
+import br.lpm.business.Pessoa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,14 +39,18 @@ public class PessoaTest {
 
     @Test
     public void testSetDataNascimento() {
-        pessoa.setDataNascimento(LocalDate.now());
-        assertEquals(null, pessoa.getDataNascimento(), "Atribuição de data inválida");
-
-        pessoa.setDataNascimento(LocalDate.now().plusYears(5));
-        assertEquals(null, pessoa.getDataNascimento(), "Atribuição de data inválida");
-
-        pessoa.setDataNascimento(LocalDate.now().minusYears(5));
-        assertEquals(LocalDate.now().minusYears(5), pessoa.getDataNascimento(), "Atribuição de data válida");
+        LocalDate hoje = LocalDate.now();
+    
+        pessoa.setDataNascimento(hoje);
+        assertEquals(null, pessoa.getDataNascimento(), "Atribuição de data inválida (data atual)");
+    
+        pessoa.setDataNascimento(hoje.plusYears(5));
+        assertEquals(null, pessoa.getDataNascimento(), "Atribuição de data inválida (data futura)");
+    
+        LocalDate dataPassada = hoje.minusYears(5);
+        
+        pessoa.setDataNascimento(dataPassada);
+        assertEquals(dataPassada, pessoa.getDataNascimento(), "Atribuição de data válida");
     }
 
     @Test

@@ -1,4 +1,4 @@
-package business;
+package br.lpm.business;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
