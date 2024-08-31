@@ -19,8 +19,8 @@ public class PessoaTest {
         pessoa.setNome("Gabr232!");
         assertEquals(null, pessoa.getNome(), "Atribuição de nome inválido");
 
-        pessoa.setNome("Gabriela");
-        assertEquals("Gabriela", pessoa.getNome(), "Atribuição de nome válido");
+        pessoa.setNome("José");
+        assertEquals("José", pessoa.getNome(), "Atribuição de nome válido");
 
     }
 

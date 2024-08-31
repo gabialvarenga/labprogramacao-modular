@@ -37,30 +37,28 @@ public class Pessoa {
         this.setMoradia(moradia);
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String novoNome) {
-        if (novoNome != null && !novoNome.trim().isEmpty()) {
-            boolean nomeAceito = true;
-
-            for (int i = 0; i < novoNome.length(); i++) {
-                char caractere = novoNome.charAt(i);
-                if (!((caractere >= 'a' && caractere <= 'z') ||
-                        (caractere >= 'A' && caractere <= 'Z') ||
-                        caractere == ' ')) {
-                    nomeAceito = false;
-                    break;
-                }
-            }
-
-            if (nomeAceito) {
-                this.nome = novoNome;
-            } else {
-                System.out.println("O nome fornecido é inválido.");
+    public boolean isStringValido(String nome) {
+        if (nome == null) {
+            return false;
+        }
+        for (int i = 0; i < nome.length(); i++) {
+            if (!(Character.isLetter(nome.charAt(i)) || nome.charAt(i) == ' ')) {
+                return false;
             }
         }
+        return true;
+    }
+
+    public void setNome(String nome) {
+        if (isStringValido(nome)) {
+            this.nome = nome;
+        } else {
+            System.out.println("O nome é inválido.");
+        }
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public LocalDate getDataNascimento() {
@@ -75,6 +73,22 @@ public class Pessoa {
             } else {
                 System.out.println("A data de nascimento é inválida.");
             }
+        }
+    }
+
+    public int getAge() {
+        if (dataNascimento != null) {
+            LocalDate hoje = LocalDate.now();
+            int anos = hoje.getYear() - dataNascimento.getYear();
+            if (hoje.getMonthValue() < dataNascimento.getMonthValue() ||
+                    hoje.getMonthValue() == dataNascimento.getMonthValue()
+                            && hoje.getDayOfMonth() < dataNascimento.getDayOfMonth()) {
+
+                anos--;
+            }
+            return anos;
+        } else {
+            return 0;
         }
     }
 
@@ -122,29 +136,27 @@ public class Pessoa {
         }
     }
 
+    public boolean isNaturalidadeValida(String naturalidade) {
+        if (naturalidade == null) {
+            return false;
+        }
+        for (int i = 0; i < naturalidade.length(); i++) {
+            if (!(Character.isLetter(naturalidade.charAt(i)) || naturalidade.charAt(i) == ' ')) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public String getNaturalidade() {
         return naturalidade;
     }
 
     public void setNaturalidade(String naturalidade) {
-        if (naturalidade != null && !naturalidade.trim().isEmpty()) {
-            boolean naturalidadeValida = true;
-
-            for (int i = 0; i < naturalidade.length(); i++) {
-                char caractere = naturalidade.charAt(i);
-                if (!((caractere >= 'a' && caractere <= 'z') ||
-                        (caractere >= 'A' && caractere <= 'Z') ||
-                        caractere == ' ')) {
-                    naturalidadeValida = false;
-                    break;
-                }
-            }
-
-            if (naturalidadeValida) {
-                this.naturalidade = naturalidade;
-            } else {
-                System.out.println("A naturalidade fornecida é inválida.");
-            }
+        if (isNaturalidadeValida(naturalidade)) {
+            this.naturalidade = naturalidade;
+        } else {
+            System.out.println("A naturalidade é inválido.");
         }
     }
 
