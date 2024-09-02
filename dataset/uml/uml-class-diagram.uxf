@@ -1,23 +1,91 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>70</x><y>40</y><w>210</w><h>190</h></coordinates><panel_attributes>Pe
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>472</x><y>0</y><w>376</w><h>248</h></coordinates><panel_attributes>br::lpm::Pessoa
 --
--id: Long
-_-ClassAttribute: Long_
+- nome: String
+- dataNascimento: LocalDate
+- genero: Genero
+- altura: float
+- peso: int
+- renda: float
+- naturalidade: String
+- hobby: Hobby
+- estadoCivil: EstadoCivil
+- escolaridade: Escolaridade
+- feliz: boolean
+- moradia: Moradia
 --
-#Operation(i: int): int
-/+AbstractOperation()/
++ Pessoa()
++ Pessoa(nome: String, dataNascimento: LocalDate, genero: Genero, altura: float, 
+peso: int, renda: float, naturalidade: String, hobby: Hobby, estadoCivil: EstadoCivil, 
+escolaridade: Escolaridade, feliz: boolean, moradia: Moradia)
++ isStringValido(nome: String): boolean
++ toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>232</x><y>368</y><w>168</w><h>96</h></coordinates><panel_attributes>&lt;enum&gt;
+EstadoCivil
 --
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>70</x><y>260</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Stereotype&gt;&gt;
-Package::FatClass
-{Some Properties}
++SOLTEIRO
++CASADO
++SEPARADO
++DIVORCIADO
++VIÚVO
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>680</x><y>264</y><w>168</w><h>96</h></coordinates><panel_attributes>&lt;enum&gt;
+Escolaridade
 --
--id: Long
-_-ClassAttribute: Long_
++NENHUMA
++FUNDAMENTAL
++MEDIO
++SUPERIOR 
++POS_GRADUACAO
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>272</y><w>168</w><h>80</h></coordinates><panel_attributes>&lt;enum&gt;
+Genero
 --
-#Operation(i: int): int
-/+AbstractOperation()/
++FEMININO
++MASCULINO
++NAO_BINARIO
++NENHUM
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>32</x><y>368</y><w>168</w><h>96</h></coordinates><panel_attributes>&lt;enum&gt;
+Hobby
 --
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element></diagram>
++ARTE
++MUSICA
++LIVRO
++SUPERIOR 
++POS_GRADUACAO
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>32</x><y>0</y><w>424</w><h>336</h></coordinates><panel_attributes>br::lpm::Dataset
+--
+- MAX_PESSOAS: 100 = int
+- pessoas: Pessoa [MAX_PESSOAS]
+- pessoasCadastradas: int 
+--
++ addPessoa(pessoa: Pessoa): void
++ removePessoa(pessoa: Pessoa): void
++ removePessoaByName(nome: String): void
++ replacePessoa(pessoaAntiga: Pessoa, novaPessoa: Pessoa): void
++ getPessoaByName(nome: String): Pessoa
++ getAll(): Pessoa[]
++ removeAll(): void
++ size(): int
++ maxAltura(): float
++ minAltura(): float
++ avgAltura(): float
++ maxPeso(): float
++ minPeso(): float
++ avgPeso(): float
++ percentAdult(): float
++ percentEstadoCivil(estadoCivil: EstadoCivil): float
++ modeEstadoCivil(): EstadoCivil
++ percentEscolaridade(escolaridade: Escolaridade): float
++ modeEscolaridade(): Escolaridade
++ percentMoradia(moradia: Moradia): float
++ modeMoradia(): Moradia
++ percentHobby(): float
++ percentFeliz(): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>456</x><y>376</y><w>168</w><h>80</h></coordinates><panel_attributes>&lt;enum&gt;
+Moradia
+--
++COM_FAMILIA
++ALUGUEL
++CASA_PROPRIA</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>664</x><y>384</y><w>200</w><h>72</h></coordinates><panel_attributes>br::lpm::App
+--
+- dataset: Dataset (static) 
+--
++ main(String[] args): void 
++ histogramFormacaoAcademica(): void 
++ pieProfissao(): void </panel_attributes><additional_attributes></additional_attributes></element></diagram>
