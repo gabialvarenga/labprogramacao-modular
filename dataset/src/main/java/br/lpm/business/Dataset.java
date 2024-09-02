@@ -40,8 +40,11 @@ public class Dataset {
     }
 
     public void replacePessoa(Pessoa pessoaAntiga, Pessoa novaPessoa) {
+        if (pessoaAntiga == null || novaPessoa == null) {
+        }
         for (int i = 0; i < pessoasCadastradas; i++) {
-            if (pessoas[i] != null && pessoas[i].equals(pessoaAntiga)) {
+            if (pessoas[i] != null &&
+                    pessoas[i].getNome().equals(pessoaAntiga.getNome())) {
                 pessoas[i] = novaPessoa;
                 return;
             }
@@ -177,46 +180,6 @@ public class Dataset {
         return calcularPercentual(totalPorEstadoCivil);
     }
 
-    public float percentEscolaridade(Escolaridade escolaridade) {
-        int totalPorEscolaridade = 0;
-        for (int i = 0; i < pessoasCadastradas; i++) {
-            if (pessoas[i].getEscolaridade().equals(escolaridade)) {
-                totalPorEscolaridade++;
-            }
-        }
-        return calcularPercentual(totalPorEscolaridade);
-    }
-
-    public float percentMoradia(Moradia moradia) {
-        int totalPorMoradia = 0;
-        for (int i = 0; i < pessoasCadastradas; i++) {
-            if (pessoas[i].getMoradia().equals(moradia)) {
-                totalPorMoradia++;
-            }
-        }
-        return calcularPercentual(totalPorMoradia);
-    }
-
-    public float percentHobby() {
-        int totalHobby = 0;
-        for (int i = 0; i < pessoasCadastradas; i++) {
-            if (!(pessoas[i].getHobby().equals(Hobby.NENHUM))) {
-                totalHobby++;
-            }
-        }
-        return calcularPercentual(totalHobby);
-    }
-
-    public float percentFeliz() {
-        int totalFeliz = 0;
-        for (int i = 0; i < pessoasCadastradas; i++) {
-            if (pessoas[i].isFeliz()) {
-                totalFeliz++;
-            }
-        }
-        return calcularPercentual(totalFeliz);
-    }
-
     public EstadoCivil modeEstadoCivil() {
         int[] contador = new int[5];
 
@@ -256,6 +219,16 @@ public class Dataset {
         }
 
         return maisComum;
+    }
+
+    public float percentEscolaridade(Escolaridade escolaridade) {
+        int totalPorEscolaridade = 0;
+        for (int i = 0; i < pessoasCadastradas; i++) {
+            if (pessoas[i].getEscolaridade().equals(escolaridade)) {
+                totalPorEscolaridade++;
+            }
+        }
+        return calcularPercentual(totalPorEscolaridade);
     }
 
     public Escolaridade modeEscolaridade() {
@@ -306,9 +279,19 @@ public class Dataset {
         return maisComum;
     }
 
+    public float percentMoradia(Moradia moradia) {
+        int totalPorMoradia = 0;
+        for (int i = 0; i < pessoasCadastradas; i++) {
+            if (pessoas[i].getMoradia().equals(moradia)) {
+                totalPorMoradia++;
+            }
+        }
+        return calcularPercentual(totalPorMoradia);
+    }
+
     public Moradia modeMoradia() {
         int[] contador = new int[3];
-    
+
         for (int i = 0; i < pessoasCadastradas; i++) {
             Moradia moradia = pessoas[i].getMoradia();
             if (moradia == Moradia.COM_FAMILIA) {
@@ -319,10 +302,10 @@ public class Dataset {
                 contador[2]++;
             }
         }
-    
+
         int max = contador[0];
         Moradia maisComum = Moradia.COM_FAMILIA;
-    
+
         if (contador[1] > max) {
             max = contador[1];
             maisComum = Moradia.ALUGUEL;
@@ -331,8 +314,27 @@ public class Dataset {
             max = contador[2];
             maisComum = Moradia.CASA_PROPRIA;
         }
-    
+
         return maisComum;
     }
 
+    public float percentHobby() {
+        int totalHobby = 0;
+        for (int i = 0; i < pessoasCadastradas; i++) {
+            if (!(pessoas[i].getHobby().equals(Hobby.NENHUM))) {
+                totalHobby++;
+            }
+        }
+        return calcularPercentual(totalHobby);
+    }
+
+    public float percentFeliz() {
+        int totalFeliz = 0;
+        for (int i = 0; i < pessoasCadastradas; i++) {
+            if (pessoas[i].isFeliz()) {
+                totalFeliz++;
+            }
+        }
+        return calcularPercentual(totalFeliz);
+    }
 }
