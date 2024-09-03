@@ -53,7 +53,7 @@ public class Dataset {
 
     public Pessoa getPessoaByName(String nome) {
         for (int i = 0; i < pessoasCadastradas; i++) {
-            if (pessoas[i] != null && pessoas[i].getNome().equals(nome)) {
+            if (pessoas[i] != null && pessoas[i].getNome().equalsIgnoreCase(nome)) {
                 return pessoas[i];
             }
         }
@@ -116,11 +116,11 @@ public class Dataset {
         return mediaAltura / pessoasCadastradas;
     }
 
-    public float maxPeso() {
+    public int maxPeso() {
         if (pessoasCadastradas == 0) {
             return 0;
         }
-        float pesoMaximo = pessoas[0].getPeso();
+        int pesoMaximo = pessoas[0].getPeso();
         for (int i = 1; i < pessoasCadastradas; i++) {
             if (pessoas[i].getPeso() > pesoMaximo) {
                 pesoMaximo = pessoas[i].getPeso();
@@ -129,11 +129,11 @@ public class Dataset {
         return pesoMaximo;
     }
 
-    public float minPeso() {
+    public int minPeso() {
         if (pessoasCadastradas == 0) {
             return 0;
         }
-        float pesoMinimo = pessoas[0].getPeso();
+        int pesoMinimo = pessoas[0].getPeso();
         for (int i = 1; i < pessoasCadastradas; i++) {
             if (pessoas[i].getPeso() < pesoMinimo) {
                 pesoMinimo = pessoas[i].getPeso();
@@ -142,11 +142,11 @@ public class Dataset {
         return pesoMinimo;
     }
 
-    public float avgPeso() {
+    public int avgPeso() {
         if (pessoasCadastradas == 0) {
             return 0;
         }
-        float mediaPeso = 0.0f;
+        int mediaPeso = 0;
         for (int i = 0; i < pessoasCadastradas; i++) {
             mediaPeso += pessoas[i].getPeso();
         }

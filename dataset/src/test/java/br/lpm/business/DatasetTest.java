@@ -33,7 +33,7 @@ public class DatasetTest {
     @DisplayName("Testando addPessoa")
     public void testAddPessoa() {
         dataset.addPessoa(pessoa1);
-        assertEquals(1, dataset.size(), "Pessoa adicionada");
+        assertEquals(1, dataset.size(), "");
 
         dataset.addPessoa(pessoa2);
         assertEquals(2, dataset.size(), "Pessoa adicionada");

@@ -49,7 +49,7 @@ Hobby
 +LIVRO
 +SUPERIOR 
 +POS_GRADUACAO
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>32</x><y>0</y><w>424</w><h>336</h></coordinates><panel_attributes>br::lpm::Dataset
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>32</x><y>0</y><w>424</w><h>352</h></coordinates><panel_attributes>br::lpm::Dataset
 --
 - MAX_PESSOAS: 100 = int
 - pessoas: Pessoa [MAX_PESSOAS]
