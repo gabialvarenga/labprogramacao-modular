@@ -33,22 +33,22 @@ public class DatasetTest {
     @DisplayName("Testando addPessoa")
     public void testAddPessoa() {
         dataset.addPessoa(pessoa1);
-        assertEquals(1, dataset.size(), "");
+        assertEquals(1, dataset.size(), "Deve aumentar o tamanho ao adicionar uma pessoa válida.");
 
         dataset.addPessoa(pessoa2);
-        assertEquals(2, dataset.size(), "Pessoa adicionada");
+        assertEquals(2, dataset.size(), "Deve aumentar o tamanho ao adicionar uma segunda pessoa válida.");
 
         dataset.addPessoa(null);
-        assertEquals(2, dataset.size(), "Pessoa nula não foi adicionada");
+        assertEquals(2, dataset.size(), "Não deve adicionar uma pessoa nula, o tamanho permanece inalterado.");
 
         dataset.addPessoa(pessoa2);
-        assertEquals(2, dataset.size(), "Pessoa duplicada não foi adicionada");
+        assertEquals(2, dataset.size(), "Não deve adicionar uma pessoa duplicada, o tamanho permanece inalterado.");
 
         dataset.removeAll();
-        assertEquals(0, dataset.size(), "Dataset foi esvaziado");
+        assertEquals(0, dataset.size(), "O tamanho deve ser 0 após remover todas as pessoas.");
 
         dataset.addPessoa(null);
-        assertEquals(0, dataset.size(), "Pessoa nula não foi adicionada");
+        assertEquals(0, dataset.size(), "Não deve adicionar uma pessoa nula, mesmo com o dataset vazio.");
     }
 
     @Test
@@ -58,13 +58,13 @@ public class DatasetTest {
         dataset.addPessoa(pessoa3);
 
         dataset.removePessoa(pessoa1);
-        assertEquals(1, dataset.size(), "Pessoa removida");
+        assertEquals(1, dataset.size(), "Deve reduzir o tamanho ao remover uma pessoa existente.");
 
         dataset.removePessoa(pessoa2);
-        assertEquals(1, dataset.size(), "Pessoa removida");
+        assertEquals(1, dataset.size(), "Remover uma pessoa inexistente não altera o tamanho.");
 
         dataset.removePessoa(pessoa3);
-        assertEquals(0, dataset.size(), "Tamanho é 0 porque todos foram removidos");
+        assertEquals(0, dataset.size(), "O tamanho deve ser 0 após remover todas as pessoas.");
     }
 
     @Test
@@ -74,42 +74,34 @@ public class DatasetTest {
         dataset.addPessoa(pessoa2);
 
         dataset.removePessoaByName("Laura");
-        assertEquals(2, dataset.size(), "Tamanho não muda com pessoa inexistente");
+        assertEquals(2, dataset.size(), "Remover uma pessoa pelo nome inexistente não altera o tamanho.");
 
         dataset.removePessoaByName("Gabriela");
-        assertEquals(1, dataset.size(), "Pessoa removida de acordo com o nome");
+        assertEquals(1, dataset.size(), "Deve reduzir o tamanho ao remover uma pessoa pelo nome existente.");
 
         dataset.removePessoaByName("Carlos");
-        assertEquals(0, dataset.size(), "Tamanho é 0 porque todas as pessoas foram removidas");
-
+        assertEquals(0, dataset.size(), "O tamanho deve ser 0 após remover todas as pessoas.");
     }
 
     @Test
     @DisplayName("Testando replacePessoa")
     void testReplacePessoa() {
-        pessoa1.setNome("Gabriela");
-        pessoa2.setNome("Carlos");
-        pessoa3.setNome("Laura");
-
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
 
         dataset.replacePessoa(pessoa1, pessoa3);
         assertEquals(null, dataset.getPessoaByName("Gabriela"),
-                "A pessoa com nome 'Gabriela' deveria ter sido substituída");
-
-        assertEquals(pessoa3, dataset.getPessoaByName("Laura"), "A pessoa com nome 'Laura' deveria estar na lista.");
+                "A pessoa 'Gabriela' deve ser substituída e não mais encontrada.");
+        assertEquals(pessoa3, dataset.getPessoaByName("Laura"),
+                "A pessoa 'Laura' deve estar na lista após substituição.");
     }
 
     @Test
     @DisplayName("Testando getPessoaByName")
     void testGetPessoaByName() {
         dataset.addPessoa(pessoa2);
-
-        assertEquals(pessoa2, dataset.getPessoaByName("Carlos"), "Pessoa encontrada pelo nome.");
-
-        assertEquals(null, dataset.getPessoaByName("Laura"), "Tamanho não muda com pessoa inexistente.");
-
+        assertEquals(pessoa2, dataset.getPessoaByName("Carlos"), "Deve encontrar a pessoa pelo nome 'Carlos'.");
+        assertEquals(null, dataset.getPessoaByName("Laura"), "Não deve encontrar uma pessoa com nome inexistente.");
     }
 
     @Test
@@ -117,12 +109,12 @@ public class DatasetTest {
     void testGetAll() {
         dataset.removeAll();
         Pessoa[] pessoas = dataset.getAll();
-        assertEquals(0, pessoas.length, "Vetor não se encontra vazio");
+        assertEquals(0, pessoas.length, "O vetor deve estar vazio após remover todas as pessoas.");
 
         dataset.addPessoa(pessoa2);
         Pessoa[] pessoas1 = dataset.getAll();
-        assertEquals(1, pessoas1.length, "Uma pessoa adicionada ao vetor");
-        assertEquals(pessoa2, pessoas1[0], "Nao sei o comentário");
+        assertEquals(1, pessoas1.length, "O vetor deve conter uma pessoa após adicionar.");
+        assertEquals(pessoa2, pessoas1[0], "A pessoa adicionada deve ser igual à recuperada.");
     }
 
     @Test
@@ -133,46 +125,48 @@ public class DatasetTest {
 
         dataset.removeAll();
         Pessoa[] pessoas = dataset.getAll();
-        assertEquals(0, pessoas.length, "Vetor não se encontra vazio");
+        assertEquals(0, pessoas.length, "O vetor deve estar vazio após chamar removeAll.");
     }
 
     @Test
     @DisplayName("Testando size")
     void testSize() {
         dataset.addPessoa(pessoa1);
-        assertEquals(1, dataset.size(), "Tamanho acad após adicionar uma pessoa");
+        assertEquals(1, dataset.size(), "O tamanho deve ser 1 após adicionar uma pessoa.");
         dataset.addPessoa(pessoa2);
-        assertEquals(2, dataset.size(), "Tamanho cac após adicionar segunda pessoa");
+        assertEquals(2, dataset.size(), "O tamanho deve ser 2 após adicionar outra pessoa.");
         dataset.removePessoa(pessoa1);
-        assertEquals(1, dataset.size(), "Tamanho caca após remover uma pessoa");
+        assertEquals(1, dataset.size(), "O tamanho deve ser 1 após remover uma pessoa.");
         dataset.removeAll();
-        assertEquals(0, dataset.size(), "Tamanho cacac após remover todas");
+        assertEquals(0, dataset.size(), "O tamanho deve ser 0 após remover todas as pessoas.");
     }
 
     @Test
     @DisplayName("Testando maxAltura")
     void testMaxAltura() {
         dataset.addPessoa(pessoa2);
-        assertEquals(1.72f, dataset.maxAltura(), 0.01f, "Altura máxima deve ser 1.72");
+        assertEquals(1.72f, dataset.maxAltura(), 0.01f, "A altura máxima deve ser 1.72.");
 
         dataset.addPessoa(pessoa1);
-        assertEquals(1.72f, dataset.maxAltura(), 0.01f, "Altura máxima não se altera");
+        assertEquals(1.72f, dataset.maxAltura(), 0.01f,
+                "A altura máxima deve permanecer 1.72 após adicionar uma pessoa mais baixa.");
 
         dataset.addPessoa(pessoa3);
-        assertEquals(1.72f, dataset.maxAltura(), 0.01f, "Altura máxima final deve ser 1.72");
+        assertEquals(1.72f, dataset.maxAltura(), 0.01f, "A altura máxima deve continuar 1.72.");
     }
 
     @Test
     @DisplayName("Testando minAltura")
     void testMinAltura() {
         dataset.addPessoa(pessoa3);
-        assertEquals(1.65f, dataset.minAltura(), 0.01f, "Altura mínima deve ser 1.65");
+        assertEquals(1.65f, dataset.minAltura(), 0.01f, "A altura mínima deve ser 1.65.");
 
         dataset.addPessoa(pessoa2);
-        assertEquals(1.65f, dataset.minAltura(), 0.01f, "Altura mínima deve manter como 1.65");
+        assertEquals(1.65f, dataset.minAltura(), 0.01f, "A altura mínima deve permanecer 1.65.");
 
         dataset.addPessoa(pessoa1);
-        assertEquals(1.53f, dataset.minAltura(), 0.01f, "Altura mínima deve alterar para ser 1.53");
+        assertEquals(1.53f, dataset.minAltura(), 0.01f,
+                "A altura mínima deve ser 1.53 após adicionar uma pessoa mais baixa.");
     }
 
     @Test
@@ -182,45 +176,46 @@ public class DatasetTest {
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
 
-        assertEquals(1.63F, dataset.avgAltura(), 0.01f, "A média entre os 3 pesos deve ser 1,63");
+        assertEquals(1.63f, dataset.avgAltura(), 0.01f, "A média de altura deve ser 1.63.");
     }
 
     @Test
     @DisplayName("Testando maxPeso")
     void testMaxPeso() {
         dataset.addPessoa(pessoa2);
-        assertEquals(62, dataset.maxPeso(), "Peso máximo deve ser 62kg");
+        assertEquals(62, dataset.maxPeso(), "O peso máximo deve ser 62kg.");
 
         dataset.addPessoa(pessoa1);
-        assertEquals(62, dataset.maxPeso(), "Peso máximo não se altera");
+        assertEquals(62, dataset.maxPeso(), "O peso máximo deve permanecer 62kg.");
 
         dataset.addPessoa(pessoa3);
-        assertEquals(62, dataset.maxPeso(), "Peso máximo final deve ser 62");
+        assertEquals(62, dataset.maxPeso(), "O peso máximo final deve continuar sendo 62kg.");
     }
 
     @Test
     @DisplayName("Testando minPeso")
     void testMinPeso() {
         dataset.addPessoa(pessoa2);
-        assertEquals(62, dataset.minPeso(), "Peso mínimo deve ser 62");
+        assertEquals(62, dataset.minPeso(), "O peso mínimo deve ser 62kg.");
 
         dataset.addPessoa(pessoa3);
-        assertEquals(57, dataset.minPeso(), "Peso mínimo deve ser 57");
+        assertEquals(57, dataset.minPeso(), "O peso mínimo deve ser 57kg após adicionar uma pessoa mais leve.");
 
         dataset.addPessoa(pessoa1);
-        assertEquals(57, dataset.minPeso(), "Peso mínimo final deve se manter 57");
+        assertEquals(57, dataset.minPeso(), "O peso mínimo deve permanecer 57kg.");
     }
 
     @Test
     @DisplayName("Testando avgPeso")
     void testAvgPeso() {
         dataset.removeAll();
-        assertEquals(0, dataset.avgPeso(), "Peso médio deve ser 0");
+        assertEquals(0, dataset.avgPeso(), "A média de peso deve ser 0 quando o vetor está vazio.");
+
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
 
-        assertEquals(59, dataset.avgPeso(), "A média entre os pesos deve ser 59");
+        assertEquals(59, dataset.avgPeso(), "A média de peso deve ser 59kg.");
     }
 
     @Test
@@ -230,11 +225,10 @@ public class DatasetTest {
         dataset.addPessoa(pessoa3);
         dataset.addPessoa(pessoa1);
 
-        assertEquals(100, dataset.percentAdult(), "Percentual de adulto deve ser 100%");
+        assertEquals(100, dataset.percentAdult(), "A porcentagem de adultos deve ser 100%.");
 
         dataset.removePessoa(pessoa1);
-        assertEquals(100, dataset.percentAdult(), "Percentual de adulto deve continuar sendo 100%");
-
+        assertEquals(100, dataset.percentAdult(), "A porcentagem de adultos deve continuar sendo 100%.");
     }
 
     @Test
@@ -243,8 +237,9 @@ public class DatasetTest {
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
+
         assertEquals(66.67f, dataset.percentEstadoCivil(EstadoCivil.CASADO), 0.01f,
-                "A porcentagem de casados deve ser 66.67%");
+                "A porcentagem de pessoas casadas deve ser 66.67%.");
     }
 
     @Test
@@ -253,8 +248,9 @@ public class DatasetTest {
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
+
         assertEquals(EstadoCivil.CASADO, dataset.modeEstadoCivil(),
-                "O estado civil mais frequente deveria ser CASADO");
+                "O estado civil mais frequente deve ser CASADO.");
     }
 
     @Test
@@ -263,11 +259,9 @@ public class DatasetTest {
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
-        assertEquals(
-                66.67f,
-                dataset.percentEscolaridade(Escolaridade.MEDIO),
-                0.01f,
-                "A porcentagem de pessoas com ensino médio deveria ser 66.67% ");
+
+        assertEquals(66.67f, dataset.percentEscolaridade(Escolaridade.MEDIO), 0.01f,
+                "A porcentagem de pessoas com ensino médio deve ser 66.67%.");
     }
 
     @Test
@@ -276,9 +270,9 @@ public class DatasetTest {
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
-        assertEquals(
-                Escolaridade.MEDIO,
-                dataset.modeEscolaridade(),"A escolaridade mais frequente deveria ser MEDIO");
+
+        assertEquals(Escolaridade.MEDIO, dataset.modeEscolaridade(),
+                "A escolaridade mais frequente deve ser MEDIO.");
     }
 
     @Test
@@ -287,17 +281,12 @@ public class DatasetTest {
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
-        assertEquals(
-                0.0f,
-                dataset.percentMoradia(Moradia.ALUGUEL),
-                0.01f,
-                "A porcentagem de pessoas que moram de aluguel deveria ser 0.00%");
 
-                assertEquals(
-                    33.33f,
-                    dataset.percentMoradia(Moradia.COM_FAMILIA),
-                    0.01f,
-                    "A porcentagem de pessoas que moram com a família deveria ser 33.33%");
+        assertEquals(0.0f, dataset.percentMoradia(Moradia.ALUGUEL), 0.01f,
+                "A porcentagem de pessoas que moram de aluguel deve ser 0.00%.");
+
+        assertEquals(33.33f, dataset.percentMoradia(Moradia.COM_FAMILIA), 0.01f,
+                "A porcentagem de pessoas que moram com a família deve ser 33.33%.");
     }
 
     @Test
@@ -306,8 +295,9 @@ public class DatasetTest {
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
-        assertEquals(
-                Moradia.CASA_PROPRIA, dataset.modeMoradia(), "A moradia mais frequente deveria ser CASA PRÓPRIA");
+
+        assertEquals(Moradia.CASA_PROPRIA, dataset.modeMoradia(),
+                "A moradia mais frequente deve ser CASA PRÓPRIA.");
     }
 
     @Test
@@ -316,11 +306,9 @@ public class DatasetTest {
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
-        assertEquals(
-                100.0f,
-                dataset.percentHobby(),
-                0.01f,
-                "A porcentagem de pessoas com hobbies deveria ser 100%");
+
+        assertEquals(100.0f, dataset.percentHobby(), 0.01f,
+                "A porcentagem de pessoas com hobbies deve ser 100%.");
     }
 
     @Test
@@ -329,10 +317,9 @@ public class DatasetTest {
         dataset.addPessoa(pessoa1);
         dataset.addPessoa(pessoa2);
         dataset.addPessoa(pessoa3);
-        assertEquals(
-                100.0f,
-                dataset.percentFeliz(),
-                0.01f,
-                "A porcentagem de pessoas felizes deveria ser 100.0%");
+
+        assertEquals(100.0f, dataset.percentFeliz(), 0.01f,
+                "A porcentagem de pessoas felizes deve ser 100%.");
     }
+
 }
