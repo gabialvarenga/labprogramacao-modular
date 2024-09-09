@@ -1,0 +1,107 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes </help_text><element><id>UMLClass</id><coordinates><x>448</x><y>0</y><w>376</w><h>248</h></coordinates><panel_attributes>br::lpm::Pessoa
+--
+- nome: String
+- dataNascimento: LocalDate
+- genero: Genero
+- altura: float
+- peso: int
+- renda: float
+- naturalidade: String
+- hobby: Hobby
+- estadoCivil: EstadoCivil
+- escolaridade: Escolaridade
+- feliz: boolean
+- moradia: Moradia
+--
++ Pessoa()
++ Pessoa(nome: String, dataNascimento: LocalDate, genero: Genero, altura: float, 
+peso: int, renda: float, naturalidade: String, hobby: Hobby, estadoCivil: EstadoCivil, 
+escolaridade: Escolaridade, feliz: boolean, moradia: Moradia)
++ isStringValido(nome: String): boolean
++ isNaturalidadeValida(naturalidade: String): boolean
++ toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>208</x><y>368</y><w>168</w><h>96</h></coordinates><panel_attributes>&lt;enum&gt;
+EstadoCivil
+--
++SOLTEIRO
++CASADO
++SEPARADO
++DIVORCIADO
++VIÚVO
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>656</x><y>264</y><w>168</w><h>96</h></coordinates><panel_attributes>&lt;enum&gt;
+Escolaridade
+--
++NENHUMA
++FUNDAMENTAL
++MEDIO
++SUPERIOR 
++POS_GRADUACAO
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>456</x><y>272</y><w>168</w><h>80</h></coordinates><panel_attributes>&lt;enum&gt;
+Genero
+--
++FEMININO
++MASCULINO
++NAO_BINARIO
++NENHUM
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>8</x><y>368</y><w>168</w><h>96</h></coordinates><panel_attributes>&lt;enum&gt;
+Hobby
+--
++ARTE
++MUSICA
++LIVRO
++SUPERIOR 
++POS_GRADUACAO
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>8</x><y>0</y><w>424</w><h>360</h></coordinates><panel_attributes>br::lpm::Dataset
+--
+- static final MAX_PESSOAS: int   
+- pessoas: Pessoa[]               
+- pessoasCadastradas: int         
+- distanceMeasure: DistanceMeasure
+--
++ addPessoa(pessoa: Pessoa): void
++ removePessoa(pessoa: Pessoa): void
++ removePessoaByName(nome: String): void
++ replacePessoa(pessoaAntiga: Pessoa, novaPessoa: Pessoa): void
++ getPessoaByName(nome: String): Pessoa
++ getAll(): Pessoa[]
++ removeAll(): void
++ size(): int
++ maxAltura(): float
++ minAltura(): float
++ avgAltura(): float
++ maxPeso(): float
++ minPeso(): float
++ avgPeso(): float
++ percentAdult(): float
++ percentEstadoCivil(estadoCivil: EstadoCivil): float
++ modeEstadoCivil(): EstadoCivil
++ percentEscolaridade(escolaridade: Escolaridade): float
++ modeEscolaridade(): Escolaridade
++ percentMoradia(moradia: Moradia): float
++ modeMoradia(): Moradia
++ percentHobby(): float
++ percentFeliz(): float
++ minIdade(): float
++ minIdade(): float
++ maxIdade(): float
++ minRenda(): float
++ maxRenda(): float
++ calcDistanceVector(pessoa: Pessoa): float []
++ calcDistanceMatrix(): float [] []
++ getSimilar(pessoa: Pessoa, n: int): Pessoa[]
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>432</x><y>376</y><w>168</w><h>80</h></coordinates><panel_attributes>&lt;enum&gt;
+Moradia
+--
++COM_FAMILIA
++ALUGUEL
++CASA_PROPRIA</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>464</y><w>168</w><h>152</h></coordinates><panel_attributes>br::lpm::DistanceMeasure
+--
+- dataset: Dataset
+--
++ normalizeField(fieldName: string): float []
++ calcularNormalizacao(pessoa: Pessoa, nomeCampo: String): float
+- ajustarValor(x: float, minimo:float, maximo: float): float
++calcularDistancia(first: Pessoa, second: Pessoa
+- calcularDistanciaNumerico(valor1: float, valor2: min: float, max:float): float 
+- calcularDistanciaBoolean(first: boolean, second: boolean): float 
+- calcularDistanciaEnum(first: Enum&lt;?&gt;, second: Enum&lt;?&gt;): float </panel_attributes><additional_attributes></additional_attributes></element></diagram>
