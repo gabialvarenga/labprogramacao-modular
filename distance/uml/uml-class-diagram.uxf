@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes </help_text><element><id>UMLClass</id><coordinates><x>448</x><y>0</y><w>376</w><h>248</h></coordinates><panel_attributes>br::lpm::Pessoa
+<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><help_text>Space for diagram notes </help_text><element><id>UMLClass</id><coordinates><x>498</x><y>89</y><w>204</w><h>168</h></coordinates><panel_attributes>br::lpm::Pessoa
 --
 - nome: String
 - dataNascimento: LocalDate
@@ -13,13 +13,10 @@
 - feliz: boolean
 - moradia: Moradia
 --
-+ Pessoa()
-+ Pessoa(nome: String, dataNascimento: LocalDate, genero: Genero, altura: float, 
-peso: int, renda: float, naturalidade: String, hobby: Hobby, estadoCivil: EstadoCivil, 
-escolaridade: Escolaridade, feliz: boolean, moradia: Moradia)
 + isStringValido(nome: String): boolean
 + isNaturalidadeValida(naturalidade: String): boolean
-+ toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>208</x><y>368</y><w>168</w><h>96</h></coordinates><panel_attributes>&lt;enum&gt;
++ isFeliz(): boolean
++ toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>359</y><w>126</w><h>72</h></coordinates><panel_attributes>&lt;enum&gt;
 EstadoCivil
 --
 +SOLTEIRO
@@ -27,7 +24,7 @@ EstadoCivil
 +SEPARADO
 +DIVORCIADO
 +VIÚVO
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>656</x><y>264</y><w>168</w><h>96</h></coordinates><panel_attributes>&lt;enum&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>822</x><y>233</y><w>126</w><h>72</h></coordinates><panel_attributes>&lt;enum&gt;
 Escolaridade
 --
 +NENHUMA
@@ -35,14 +32,14 @@ Escolaridade
 +MEDIO
 +SUPERIOR 
 +POS_GRADUACAO
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>456</x><y>272</y><w>168</w><h>80</h></coordinates><panel_attributes>&lt;enum&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>143</y><w>126</w><h>66</h></coordinates><panel_attributes>&lt;enum&gt;
 Genero
 --
 +FEMININO
 +MASCULINO
 +NAO_BINARIO
 +NENHUM
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>8</x><y>368</y><w>168</w><h>96</h></coordinates><panel_attributes>&lt;enum&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>29</y><w>126</w><h>72</h></coordinates><panel_attributes>&lt;enum&gt;
 Hobby
 --
 +ARTE
@@ -50,7 +47,7 @@ Hobby
 +LIVRO
 +SUPERIOR 
 +POS_GRADUACAO
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>8</x><y>0</y><w>424</w><h>360</h></coordinates><panel_attributes>br::lpm::Dataset
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>126</x><y>23</y><w>246</w><h>336</h></coordinates><panel_attributes>br::lpm::Dataset
 --
 - static final MAX_PESSOAS: int   
 - pessoas: Pessoa[]               
@@ -89,19 +86,28 @@ Hobby
 + calcDistanceMatrix(): float [] []
 + getSimilar(pessoa: Pessoa, n: int): Pessoa[]
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>432</x><y>376</y><w>168</w><h>80</h></coordinates><panel_attributes>&lt;enum&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>594</x><y>365</y><w>126</w><h>60</h></coordinates><panel_attributes>&lt;enum&gt;
 Moradia
 --
 +COM_FAMILIA
 +ALUGUEL
-+CASA_PROPRIA</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>464</y><w>168</w><h>152</h></coordinates><panel_attributes>br::lpm::DistanceMeasure
++CASA_PROPRIA</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>138</x><y>455</y><w>264</w><h>96</h></coordinates><panel_attributes>br::lpm::DistanceMeasure
 --
 - dataset: Dataset
 --
++ distanceMeasure(dataset: Dataset)
 + normalizeField(fieldName: string): float []
 + calcularNormalizacao(pessoa: Pessoa, nomeCampo: String): float
 - ajustarValor(x: float, minimo:float, maximo: float): float
-+calcularDistancia(first: Pessoa, second: Pessoa
++ calcularDistancia(first: Pessoa, second: Pessoa
 - calcularDistanciaNumerico(valor1: float, valor2: min: float, max:float): float 
 - calcularDistanciaBoolean(first: boolean, second: boolean): float 
-- calcularDistanciaEnum(first: Enum&lt;?&gt;, second: Enum&lt;?&gt;): float </panel_attributes><additional_attributes></additional_attributes></element></diagram>
+- calcularDistanciaEnum(first: Enum&lt;?&gt;, second: Enum&lt;?&gt;): float </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>366</x><y>197</y><w>144</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1..*
+m2=0..1
+</panel_attributes><additional_attributes>220;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>696</x><y>65</y><w>126</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>190;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>696</x><y>155</y><w>126</w><h>42</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>190;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>696</x><y>203</y><w>138</w><h>84</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>210;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>690</x><y>251</y><w>132</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>200;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>251</y><w>24</w><h>126</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>10;190;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>234</x><y>353</y><w>18</w><h>114</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;170;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>192</x><y>353</y><w>18</w><h>114</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;170</additional_attributes></element></diagram>
