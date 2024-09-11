@@ -3,19 +3,19 @@ package br.lpm.business;
 public class Veiculo {
     private String modelo;
     private int ano;
-    private int placa;
-    private int km;
+    private String placa;
+    private double km;
     private Motorista motoristaAtual;
     private Oficina oficinaAtual;
     private Rota rotaAtual;
 
-    public Veiculo(String modelo, int ano, int placa, int km) {
+    public Veiculo(String modelo, int ano, String placa, int km) {
         this.modelo = modelo;
         this.ano = ano;
         this.placa = placa;
         this.km = km;
     }
-    
+
     public Motorista getMotoristaAtual() {
         return motoristaAtual;
     }
@@ -36,10 +36,6 @@ public class Veiculo {
         return rotaAtual;
     }
 
-    public void setRotaAtual(Rota rotaAtual) {
-        this.rotaAtual = rotaAtual;
-    }
-
     public String getModelo() {
         return modelo;
     }
@@ -52,11 +48,11 @@ public class Veiculo {
         return ano;
     }
 
-    public int getPlaca() {
+    public String getPlaca() {
         return placa;
     }
 
-    public int getkm() {
+    public double getkm() {
         return km;
     }
 

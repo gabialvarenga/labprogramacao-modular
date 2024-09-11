@@ -17,7 +17,7 @@
 --
 - modelo: String
 - ano: int
-- placa: int
+- placa: String
 - km: double
 --
 + dirigir(km: double): void

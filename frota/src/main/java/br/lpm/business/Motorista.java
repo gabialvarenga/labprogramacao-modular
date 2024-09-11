@@ -17,6 +17,10 @@ public class Motorista {
         return id;
     }
 
+    public void setVeiculoAtual(Veiculo veiculoAtual) {
+        this.veiculoAtual = veiculoAtual;
+    }
+
     public Veiculo getVeiculoAtual() {
         return veiculoAtual;
     }

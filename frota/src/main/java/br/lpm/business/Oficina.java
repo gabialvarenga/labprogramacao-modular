@@ -37,14 +37,22 @@ public class Oficina {
 
 
     public void adicionarVeiculo(Veiculo veiculo, LocalDate dataPrevistaTermino) {
-        if (capacidadeAtual < capacidadeMaxima) {
+        boolean jaEmManutencao = false;
+        for (int i = 0; i < capacidadeAtual; i++) {
+            if (veiculosEmManutencao[i].equals(veiculo)) {
+                jaEmManutencao = true;
+                break;
+            }
+        }
+        if (!jaEmManutencao && capacidadeAtual < capacidadeMaxima) {
             veiculosEmManutencao[capacidadeAtual] = veiculo;
             datasPrevistasTermino[capacidadeAtual] = dataPrevistaTermino;
             capacidadeAtual++;
         } else {
-            System.out.println("Oficina cheia! Não é possível adicionar mais veículos.");
+            System.out.println("Oficina cheia ou veículo já em manutenção.");
         }
     }
+    
 
     public void removerVeiculo(Veiculo veiculo) {
         boolean encontrado = false;
