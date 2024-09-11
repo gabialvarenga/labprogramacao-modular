@@ -428,9 +428,13 @@ public class Dataset {
             return new Pessoa[0];
         }
 
+        //calcular um vetor de distâncias entre a pessoa-alvo e todas as outras pessoas cadastradas
         float[] distanciasAlvo = calcDistanceVector(pessoa);
 
+        //armazena as menores distâncias encontradas
         float[] menoresDistancias = new float[n];
+
+        //armazena as pessoas correspondentes às menores distâncias
         Pessoa[] pessoasSemelhantes = new Pessoa[n];
 
         for (int i = 0; i < n; i++) {
@@ -454,6 +458,7 @@ public class Dataset {
             return;
         }
 
+        //inicia da última posição
         int posicao = n - 1;
         while (posicao > 0 && distanciaAtual < menoresDistancias[posicao - 1]) {
             menoresDistancias[posicao] = menoresDistancias[posicao - 1];
