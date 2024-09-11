@@ -1,59 +1,62 @@
-<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><help_text>Space for diagram notes </help_text><element><id>UMLClass</id><coordinates><x>498</x><y>89</y><w>204</w><h>168</h></coordinates><panel_attributes>br::lpm::Pessoa
+<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><help_text>Space for diagram notes </help_text><element><id>UMLClass</id><coordinates><x>382</x><y>144</y><w>204</w><h>186</h></coordinates><panel_attributes>br.lpm.business::Pessoa
 --
-- nome: String
-- dataNascimento: LocalDate
-- genero: Genero
-- altura: float
-- peso: int
-- renda: float
-- naturalidade: String
-- hobby: Hobby
-- estadoCivil: EstadoCivil
-- escolaridade: Escolaridade
-- feliz: boolean
-- moradia: Moradia
+-nome: String
+-dataNascimento: LocalDate
+-genero: Genero
+-altura: float
+-peso: int
+-renda: float
+-naturalidade: String
+-hobby: Hobby
+-estadoCivil: EstadoCivil
+-escolaridade: Escolaridade
+-feliz: boolean
+-moradia: Moradia
 --
 + isStringValido(nome: String): boolean
 + isNaturalidadeValida(naturalidade: String): boolean
 + isFeliz(): boolean
-+ toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>359</y><w>126</w><h>72</h></coordinates><panel_attributes>&lt;enum&gt;
-EstadoCivil
++ getIdade(): int
++ toString(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>712</x><y>228</y><w>126</w><h>72</h></coordinates><panel_attributes>&lt;enum&gt;
+br.lpm.business::EstadoCivil
 --
 +SOLTEIRO
 +CASADO
 +SEPARADO
 +DIVORCIADO
 +VIÚVO
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>822</x><y>233</y><w>126</w><h>72</h></coordinates><panel_attributes>&lt;enum&gt;
-Escolaridade
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>712</x><y>120</y><w>126</w><h>72</h></coordinates><panel_attributes>&lt;enum&gt;
+br.lpm.business::Escolaridade
 --
 +NENHUMA
 +FUNDAMENTAL
 +MEDIO
 +SUPERIOR 
 +POS_GRADUACAO
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>143</y><w>126</w><h>66</h></coordinates><panel_attributes>&lt;enum&gt;
-Genero
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>634</x><y>12</y><w>126</w><h>66</h></coordinates><panel_attributes>&lt;enum&gt;
+br.lpm.business::Genero
 --
 +FEMININO
 +MASCULINO
 +NAO_BINARIO
 +NENHUM
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>29</y><w>126</w><h>72</h></coordinates><panel_attributes>&lt;enum&gt;
-Hobby
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>454</x><y>0</y><w>126</w><h>72</h></coordinates><panel_attributes>&lt;enum&gt;
+br.lpm.business::Hobby
 --
 +ARTE
 +MUSICA
 +LIVRO
 +SUPERIOR 
 +POS_GRADUACAO
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>126</x><y>23</y><w>246</w><h>336</h></coordinates><panel_attributes>br::lpm::Dataset
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>28</x><y>78</y><w>246</w><h>354</h></coordinates><panel_attributes>br.lpm.business::Dataset
 --
-- static final MAX_PESSOAS: int   
-- pessoas: Pessoa[]               
-- pessoasCadastradas: int         
-- distanceMeasure: DistanceMeasure
+_-MAX_PESSOAS: int_
+-pessoas: Pessoa[]
+-pessoasCadastradas: int
+-distanceMeasure: DistanceMeasure
 --
++ Dataset(distanceMeasure: DistanceMeasure)
 + addPessoa(pessoa: Pessoa): void
 + removePessoa(pessoa: Pessoa): void
 + removePessoaByName(nome: String): void
@@ -65,9 +68,9 @@ Hobby
 + maxAltura(): float
 + minAltura(): float
 + avgAltura(): float
-+ maxPeso(): float
-+ minPeso(): float
-+ avgPeso(): float
++ maxPeso(): int
++ minPeso(): int
++ avgPeso(): int
 + percentAdult(): float
 + percentEstadoCivil(estadoCivil: EstadoCivil): float
 + modeEstadoCivil(): EstadoCivil
@@ -78,36 +81,39 @@ Hobby
 + percentHobby(): float
 + percentFeliz(): float
 + minIdade(): float
-+ minIdade(): float
 + maxIdade(): float
 + minRenda(): float
 + maxRenda(): float
-+ calcDistanceVector(pessoa: Pessoa): float []
-+ calcDistanceMatrix(): float [] []
++ calcDistanceVector(pessoa: Pessoa): float[]
++ calcDistanceMatrix(): float[][]
 + getSimilar(pessoa: Pessoa, n: int): Pessoa[]
-
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>594</x><y>365</y><w>126</w><h>60</h></coordinates><panel_attributes>&lt;enum&gt;
-Moradia
++ normalizeField(fieldName: String): float[]
++ ajustarValor(valor: float, minimo: float, maximo: float): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>694</x><y>324</y><w>126</w><h>60</h></coordinates><panel_attributes>&lt;enum&gt;
+br.lpm.business::Moradia
 --
 +COM_FAMILIA
 +ALUGUEL
-+CASA_PROPRIA</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>138</x><y>455</y><w>264</w><h>96</h></coordinates><panel_attributes>br::lpm::DistanceMeasure
++CASA_PROPRIA</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>358</x><y>354</y><w>270</w><h>78</h></coordinates><panel_attributes>br.lpm.business::DistanceMeasure
 --
 - dataset: Dataset
 --
-+ distanceMeasure(dataset: Dataset)
-+ normalizeField(fieldName: string): float []
-+ calcularNormalizacao(pessoa: Pessoa, nomeCampo: String): float
-- ajustarValor(x: float, minimo:float, maximo: float): float
-+ calcularDistancia(first: Pessoa, second: Pessoa
-- calcularDistanciaNumerico(valor1: float, valor2: min: float, max:float): float 
-- calcularDistanciaBoolean(first: boolean, second: boolean): float 
-- calcularDistanciaEnum(first: Enum&lt;?&gt;, second: Enum&lt;?&gt;): float </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>366</x><y>197</y><w>144</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
-m1=1..*
-m2=0..1
-</panel_attributes><additional_attributes>220;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>696</x><y>65</y><w>126</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
-m1=1</panel_attributes><additional_attributes>190;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>696</x><y>155</y><w>126</w><h>42</h></coordinates><panel_attributes>lt=&lt;-
-m1=1</panel_attributes><additional_attributes>190;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>696</x><y>203</y><w>138</w><h>84</h></coordinates><panel_attributes>lt=&lt;-
-m1=1</panel_attributes><additional_attributes>210;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>690</x><y>251</y><w>132</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
-m1=1</panel_attributes><additional_attributes>200;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>251</y><w>24</w><h>126</h></coordinates><panel_attributes>lt=&lt;-
-m1=1</panel_attributes><additional_attributes>10;190;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>234</x><y>353</y><w>18</w><h>114</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;170;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>192</x><y>353</y><w>18</w><h>114</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;170</additional_attributes></element></diagram>
++ DistanceMeasure(dataset: Dataset)
++ calcDistance(first: Pessoa, second: Pessoa): float
+- calcDistanceNumerico(valor1: float, valor2: float, min: float, max: float): float
+- calcDistanceBoolean(first: boolean, second: boolean): float
+- calcDistanceEnum(first: Enum&lt;?&gt;, second: Enum&lt;?&gt;): float
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>496</x><y>66</y><w>48</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;.
+&lt;&lt;possui&gt;&gt;
+m2=0..1</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>72</y><w>108</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;.
+&lt;&lt;possui&gt;&gt;
+m2=0..1</panel_attributes><additional_attributes>160;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>156</y><w>144</w><h>42</h></coordinates><panel_attributes>lt=&lt;&lt;.
+&lt;&lt;possui&gt;&gt;
+m2=0..1</panel_attributes><additional_attributes>220;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>234</y><w>144</w><h>42</h></coordinates><panel_attributes>lt=&lt;&lt;.
+&lt;&lt;possui&gt;&gt;
+m2=0..1</panel_attributes><additional_attributes>220;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>282</y><w>126</w><h>78</h></coordinates><panel_attributes>lt=&lt;&lt;.
+&lt;&lt;possui&gt;&gt;
+m2=0..1</panel_attributes><additional_attributes>190;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>268</x><y>396</y><w>102</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..1
+m2=0..1</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>274</x><y>264</y><w>120</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=0..n
+m2=0..1</panel_attributes><additional_attributes>180;10;10;10</additional_attributes></element></diagram>

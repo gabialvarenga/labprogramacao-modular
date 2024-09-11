@@ -381,4 +381,25 @@ public class DatasetTest {
         assertEquals(pessoa2, similares[1], "A segunda pessoa mais similar a pessoa1 deve ser pessoa2.");
     }
 
+    @Test
+@DisplayName("Testando normalização dos campos para diferentes atributos")
+public void testNormalizeFields() {
+
+    dataset.addPessoa(pessoa1);
+    dataset.addPessoa(pessoa2);
+    dataset.addPessoa(pessoa3);
+
+    float[] normalizacaoPesos = dataset.normalizeField("Peso");
+    assertEquals(0.2f, normalizacaoPesos[0], 0.01f, "Valor normalizado para peso da pessoa1 deve ser 0.2");
+
+    float[] normalizacaoAlturas = dataset.normalizeField("Altura");
+    assertEquals(1.0f, normalizacaoAlturas[1], 0.01f, "Valor normalizado para altura da pessoa2 deve ser 1.0");
+
+    float[] normalizacaoRendas = dataset.normalizeField("Renda");
+   
+    assertEquals(1.0f, normalizacaoRendas[1], 0.01f, "Valor normalizado para renda da pessoa2 deve ser 1.0");
+
+    float[] normalizacaoIdades = dataset.normalizeField("Idade");
+    assertEquals(1.0f, normalizacaoIdades[2], 0.01f, "Valor normalizado para idade da pessoa3 deve ser 1.0");
+}
 }

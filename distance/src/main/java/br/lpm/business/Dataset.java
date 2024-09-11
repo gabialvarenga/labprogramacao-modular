@@ -5,11 +5,7 @@ public class Dataset {
     private Pessoa[] pessoas = new Pessoa[MAX_PESSOAS];
     private int pessoasCadastradas = 0;
     private DistanceMeasure distanceMeasure;
-
   
-    public Dataset(DistanceMeasure distanceMeasure) {
-      this.distanceMeasure = distanceMeasure;
-    }
   
     public Dataset() {
       this.distanceMeasure = new DistanceMeasure(this);
@@ -407,7 +403,7 @@ public class Dataset {
 
         float[] distancias = new float[pessoasCadastradas];
         for (int i = 0; i < pessoasCadastradas; i++) {
-            distancias[i] = distanceMeasure.calcularDistancia(pessoa, pessoas[i]);
+            distancias[i] = distanceMeasure.calcDistance(pessoa, pessoas[i]);
         }
 
         return distancias;
@@ -421,7 +417,7 @@ public class Dataset {
         float[][] matrizDistancias = new float[pessoasCadastradas][pessoasCadastradas];
         for (int i = 0; i < pessoasCadastradas; i++) {
             for (int j = 0; j < pessoasCadastradas; j++) {
-                matrizDistancias[i][j] = distanceMeasure.calcularDistancia(pessoas[i], pessoas[j]);
+                matrizDistancias[i][j] = distanceMeasure.calcDistance(pessoas[i], pessoas[j]);
             }
         }
 
@@ -468,6 +464,50 @@ public class Dataset {
     
         menoresDistancias[posicao] = distanciaAtual;
         pessoasSemelhantes[posicao] = pessoas[indice];
+    }
+
+    public float[] normalizeField(String fieldName) {
+        if (fieldName == null || fieldName.isEmpty()) {
+            return new float[0];
+        }
+        Pessoa[] pessoas = getAll();
+
+        if (pessoas.length == 0) {
+            return new float[0];
+        }
+
+        float[] campoNormalizado = new float[pessoas.length];
+
+        for (int i = 0; i < pessoas.length; i++) {
+            campoNormalizado[i] = calcularNormalizacao(pessoas[i], fieldName);
+        }
+        
+        return campoNormalizado;
+    }
+    
+
+    
+    private float calcularNormalizacao(Pessoa pessoa, String nomeCampo) {
+        switch (nomeCampo.toLowerCase()) {
+            case "renda":
+                return ajustarValor(pessoa.getRenda(), minRenda(), maxRenda());
+            case "peso":
+                return ajustarValor(pessoa.getPeso(), minPeso(), maxPeso());
+            case "idade":
+                return ajustarValor(pessoa.getIdade(), minIdade(), maxIdade());
+            case "altura":
+                return ajustarValor(pessoa.getAltura(), minAltura(), maxAltura());
+            default:
+                return 0.0f;  
+        }
+    }
+    
+    public float ajustarValor(float valor, float minimo, float maximo) {
+        if (maximo == minimo) {
+            return 0.0f;
+        }
+        return (valor - minimo) / (maximo - minimo);
+        
     }
     
 }
