@@ -9,6 +9,7 @@ import br.lpm.business.Moradia;
 import br.lpm.business.Pessoa;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
@@ -104,17 +105,34 @@ public class Main {
             }
         }
 
-        Pessoa ultimaPessoaCadastrada = dataset.getAll()[dataset.getAll().length - 1];
+        //Retornar as 3 pessoas mais similares a esta pessoa cadastrada.
+        Pessoa pessoa1 = new Pessoa("Gabriela", LocalDate.of(2006, 01, 15), Genero.FEMININO, 1.53f, 58, 30000.00f,
+                "Belo Horizonte", Hobby.LIVRO, EstadoCivil.CASADO, Escolaridade.MEDIO, true, Moradia.COM_FAMILIA);
 
-        Pessoa[] similares = dataset.getSimilar(ultimaPessoaCadastrada, 3);
+        Pessoa pessoa2 = new Pessoa("Carlos", LocalDate.of(2005, 10, 20), Genero.MASCULINO, 1.72f, 62, 40000.00f,
+                "Almenara", Hobby.ESPORTE, EstadoCivil.CASADO, Escolaridade.MEDIO, true, Moradia.CASA_PROPRIA);
+
+        Pessoa pessoa3 = new Pessoa("Laura", LocalDate.of(2000, 06, 11), Genero.FEMININO, 1.65f, 57, 25000.00f,
+                "Almenara", Hobby.ESPORTE, EstadoCivil.SOLTEIRO, Escolaridade.POS_GRADUACAO, true,
+                Moradia.CASA_PROPRIA);
+
+        dataset.addPessoa(pessoa1);
+        dataset.addPessoa(pessoa2);
+        dataset.addPessoa(pessoa3);
+
+        Pessoa novaPessoa = new Pessoa( "Leonardo", LocalDate.of(1976, 9, 4), Genero.MASCULINO, 1.69f, 64, 2000.12f, 
+        "Licínio de Almeida", Hobby.ESPORTE, EstadoCivil.SOLTEIRO, Escolaridade.POS_GRADUACAO, false, Moradia.CASA_PROPRIA);
+        dataset.addPessoa(novaPessoa);
+
+        Pessoa[] similares = dataset.getSimilar(novaPessoa, 3);
 
         String resultado = "As 3 pessoas mais similares:\n";
         for (Pessoa p : similares) {
-            resultado += p.toString() + "\n";
+            resultado += p.getNome() + "\n";
         }
 
         JOptionPane.showMessageDialog(null, resultado);
-
+    
         histogramFormacaoAcademica();
         pieProfissao();
     }

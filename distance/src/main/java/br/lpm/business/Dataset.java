@@ -5,10 +5,9 @@ public class Dataset {
     private Pessoa[] pessoas = new Pessoa[MAX_PESSOAS];
     private int pessoasCadastradas = 0;
     private DistanceMeasure distanceMeasure;
-  
-  
+
     public Dataset() {
-      this.distanceMeasure = new DistanceMeasure(this);
+        this.distanceMeasure = new DistanceMeasure(this);
     }
 
     public void addPessoa(Pessoa pessoa) {
@@ -428,42 +427,43 @@ public class Dataset {
         if (n <= 0 || pessoa == null || pessoasCadastradas == 0) {
             return new Pessoa[0];
         }
-    
+
         float[] distanciasAlvo = calcDistanceVector(pessoa);
-    
+
         float[] menoresDistancias = new float[n];
         Pessoa[] pessoasSemelhantes = new Pessoa[n];
-    
+
         for (int i = 0; i < n; i++) {
-            menoresDistancias[i] = Float.MAX_VALUE; 
+            menoresDistancias[i] = Float.MAX_VALUE;
         }
-    
+
         for (int i = 0; i < pessoasCadastradas; i++) {
             if (!pessoas[i].equals(pessoa)) {
                 float distanciaAtual = distanciasAlvo[i];
                 inserirSeForSemelhante(distanciaAtual, i, menoresDistancias, pessoasSemelhantes, n);
             }
         }
-    
+
         return pessoasSemelhantes;
     }
-    
-    private void inserirSeForSemelhante(float distanciaAtual, int indice, float[] menoresDistancias, Pessoa[] pessoasSemelhantes, int n) {
-       
+
+    private void inserirSeForSemelhante(float distanciaAtual, int indice, float[] menoresDistancias,
+            Pessoa[] pessoasSemelhantes, int n) {
+
         if (distanciaAtual >= menoresDistancias[n - 1]) {
-            return; 
+            return;
         }
-    
-     
+
         int posicao = n - 1;
         while (posicao > 0 && distanciaAtual < menoresDistancias[posicao - 1]) {
             menoresDistancias[posicao] = menoresDistancias[posicao - 1];
             pessoasSemelhantes[posicao] = pessoasSemelhantes[posicao - 1];
             posicao--;
         }
-    
+
         menoresDistancias[posicao] = distanciaAtual;
         pessoasSemelhantes[posicao] = pessoas[indice];
+
     }
 
     public float[] normalizeField(String fieldName) {
@@ -472,21 +472,15 @@ public class Dataset {
         }
         Pessoa[] pessoas = getAll();
 
-        if (pessoas.length == 0) {
-            return new float[0];
-        }
-
         float[] campoNormalizado = new float[pessoas.length];
 
         for (int i = 0; i < pessoas.length; i++) {
             campoNormalizado[i] = calcularNormalizacao(pessoas[i], fieldName);
         }
-        
+
         return campoNormalizado;
     }
-    
 
-    
     private float calcularNormalizacao(Pessoa pessoa, String nomeCampo) {
         switch (nomeCampo.toLowerCase()) {
             case "renda":
@@ -498,20 +492,16 @@ public class Dataset {
             case "altura":
                 return ajustarValor(pessoa.getAltura(), minAltura(), maxAltura());
             default:
-                return 0.0f;  
+                return 0.0f;
         }
     }
-    
+
     public float ajustarValor(float valor, float minimo, float maximo) {
         if (maximo == minimo) {
             return 0.0f;
         }
         return (valor - minimo) / (maximo - minimo);
-        
+
     }
-    
+
 }
-    
-    
-
-

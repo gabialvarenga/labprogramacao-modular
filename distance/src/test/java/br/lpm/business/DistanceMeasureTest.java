@@ -87,7 +87,6 @@ public class DistanceMeasureTest {
     @DisplayName("Testando a distância calculada entre duas pessoas")
     public void testCalcDistance() {
         float distancia1 = distanceMeasure.calcDistance(usuario1, usuario2);
-        // Ajuste o valor esperado conforme a lógica de cálculo de distância
         assertEquals(0.734f, distancia1, 0.01f, "A distância entre Gabriela e Carlos deve ser aproximadamente 0.774");
 
         float distancia2 = distanceMeasure.calcDistance(usuario1, usuarioReplicaA);
