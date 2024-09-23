@@ -1,22 +1,14 @@
 package br.lpm.business;
+
 import java.time.LocalDate;
 
 public class Oficina {
+    private static final int MAX_VEICULOS = 1000;
     private String nome;
     private String endereco;
-    private Veiculo[] veiculosEmManutencao;
-    private LocalDate[] datasPrevistasTermino;
-    private int capacidadeAtual = 0;
-    private int capacidadeMaxima;
+    private Manutencao[] manutencoes = new Manutencao[Oficina.MAX_VEICULOS];
+    private int numManutencoes = 0;
 
-    public Oficina(String nome, String endereco, int capacidadeMaxima) {
-        this.nome = nome;
-        this.endereco = endereco;
-        this.capacidadeMaxima = capacidadeMaxima;
-        this.veiculosEmManutencao = new Veiculo[capacidadeMaxima];
-        this.datasPrevistasTermino = new LocalDate[capacidadeMaxima];
-    }
-    
     public String getNome() {
         return nome;
     }
@@ -25,61 +17,64 @@ public class Oficina {
         this.nome = nome;
     }
 
-
     public String getEndereco() {
         return endereco;
     }
-
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
+    public int getNumManutencoes() {
+        return numManutencoes;
+    }
 
-    public void adicionarVeiculo(Veiculo veiculo, LocalDate dataPrevistaTermino) {
-        boolean jaEmManutencao = false;
-        for (int i = 0; i < capacidadeAtual; i++) {
-            if (veiculosEmManutencao[i].equals(veiculo)) {
-                jaEmManutencao = true;
-                break;
-            }
-        }
-        if (!jaEmManutencao && capacidadeAtual < capacidadeMaxima) {
-            veiculosEmManutencao[capacidadeAtual] = veiculo;
-            datasPrevistasTermino[capacidadeAtual] = dataPrevistaTermino;
-            capacidadeAtual++;
+    public Manutencao[] getAllManutencoes() {
+        return manutencoes;
+    }
+
+    public Manutencao getLastManutencaoFromVeiculo(Veiculo veiculo) {
+        if (numManutencoes == 0) {
+            return null;
         } else {
-            System.out.println("Oficina cheia ou veículo já em manutenção.");
+            for (int i = numManutencoes - 1; i >= 0; i++) {
+                if (manutencoes[i].getVeiculo().equals(veiculo)) {
+                    return manutencoes[i];
+                }
+            }
+            return null;
         }
     }
-    
 
-    public void removerVeiculo(Veiculo veiculo) {
-        boolean encontrado = false;
-        for (int i = 0; i < capacidadeAtual; i++) {
-            if (veiculosEmManutencao[i].equals(veiculo)) {
-                encontrado = true;
-                
-                for (int j = i; j < capacidadeAtual - 1; j++) {
-                    veiculosEmManutencao[j] = veiculosEmManutencao[j + 1];
-                    datasPrevistasTermino[j] = datasPrevistasTermino[j + 1];
-                }
-                capacidadeAtual--;
-                veiculosEmManutencao[capacidadeAtual] = null;
-                datasPrevistasTermino[capacidadeAtual] = null;
-                break;
+    public void addVeiculoToManutencao(Veiculo veiculo) {
+        if (numManutencoes < Oficina.MAX_VEICULOS) {
+            // Veículo já está em manutenção
+            if (veiculo.getEstado().equals(Estado.MANUTENCAO)) {
+                return;
+            } else {
+                veiculo.setEstado(Estado.MANUTENCAO);
+                Manutencao manutencao = new Manutencao(veiculo, LocalDate.now().plusDays(7));
+                manutencoes[numManutencoes++] = manutencao;
             }
         }
-        if (!encontrado) {
-            System.out.println("Veículo não encontrado na oficina.");
+    }
+
+    public void removeVeiculoFromManutencao(Veiculo veiculo) {
+        for (int i = 0; i < numManutencoes; i++) {
+            if (manutencoes[i].getVeiculo().equals(veiculo)) {
+                veiculo.setEstado(Estado.TRANSITO);
+                for (int j = i + 1; j < numManutencoes; j++) {
+                    manutencoes[j - 1] = manutencoes[j];
+                }
+                manutencoes[numManutencoes--] = null;
+                return;
+            }
         }
     }
 
-    // Exemplo de um método para listar veículos em manutenção
-    public void listarVeiculosEmManutencao() {
-        for (int i = 0; i < capacidadeAtual; i++) {
-            System.out.println("Veículo: " + veiculosEmManutencao[i].getModelo() +
-                               ", Data prevista de término: " + datasPrevistasTermino[i]);
-        }
+    public Oficina(String nome, String endereco) {
+        this.nome = nome;
+        this.endereco = endereco;
     }
+
 }

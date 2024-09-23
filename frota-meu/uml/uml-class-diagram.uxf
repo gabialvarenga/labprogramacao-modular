@@ -1,0 +1,40 @@
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes </help_text><element><id>UMLClass</id><coordinates><x>455</x><y>245</y><w>245</w><h>77</h></coordinates><panel_attributes>br.lpm.business::Oficina
+--
+- nome: String
+- endereco: String
+- veiculosEmManutencao: Veiculo[]
+--
++ adicionarVeiculo(veiculo: Veiculo, dataPrevista: LocalDate)
++ removerVeiculo(veiculo: Veiculo)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>182</x><y>434</y><w>168</w><h>70</h></coordinates><panel_attributes>br.lpm.business::Motorista
+--
+- nome: String
+- id: int
+--
++ atribuirVeiculo(veiculo: Veiculo): void
++ removerVeiculo(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>203</x><y>238</y><w>175</w><h>98</h></coordinates><panel_attributes>br.lpm.business::Veículo
+--
+- modelo: String
+- ano: int
+- placa: String
+- km: double
+--
++ dirigir(km: double): void
++ iniciarManutencao(oficina: Oficina): void
++ iniciarTransito(rota: Rota): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>7</x><y>259</y><w>140</w><h>56</h></coordinates><panel_attributes>br.lpm.business::Rota
+--
+- rotaOrigem: String
+- rotaDestino: String
+- dataTransporte: Localdate
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>252</x><y>329</y><w>56</w><h>119</h></coordinates><panel_attributes>lt=-
+m1=1
+&lt;&lt;possui&gt;&gt;
+m2=*..n</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>371</x><y>287</y><w>98</w><h>28</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>287</y><w>77</w><h>28</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>371</x><y>301</y><w>98</w><h>35</h></coordinates><panel_attributes>lt=-
+m1=0..*
+&lt;&lt;possui&gt;&gt;
+m2=0..1</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element></diagram>
