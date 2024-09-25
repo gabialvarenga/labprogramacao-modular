@@ -1,26 +1,14 @@
 package br.lpm.business;
 
-public class Motorista {
-    private String nome;
-    private int id;
-    private static int cont = 0;
-    
-    public String getNome() {
-        return nome;
+public class Motorista extends Pessoa {
+    public Motorista(String nome, int id) {
+        super(nome, id);
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    @Override
+    public String toString() {
+        return "Motorista [" + super.toString() + "]";
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public Motorista(String nome) {
-        this.nome = nome;
-        this.id = ++cont;
-    }
-
     
 }
+

@@ -58,6 +58,12 @@ public class Veiculo {
         this.estado = Estado.TRANSITO;
     }
 
+    @Override
+    public String toString() {
+        return "Veiculo [modelo=" + modelo + ", ano=" + ano + ", placa=" + placa + ", km=" + km + ", estado=" + estado
+                + "]";
+    }
+
 
     
 }

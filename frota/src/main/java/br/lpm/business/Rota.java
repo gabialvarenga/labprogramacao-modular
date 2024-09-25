@@ -39,4 +39,14 @@ public class Rota {
         this.data = data;
     }
 
+    
+
+    @Override
+    public String toString() {
+        return "Rota [veiculo=" + veiculo + ", motorista=" + motorista + ", origem=" + origem + ", destino=" + destino
+                + ", data=" + data + "]";
+    }
+
+    
+
 }

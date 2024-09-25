@@ -31,4 +31,11 @@ public class Manutencao {
         this.setPrevisao(previsao);
     }
 
+    @Override
+    public String toString() {
+        return "Manutencao [veiculo=" + veiculo + ", previsao=" + previsao + "]";
+    }
+
+    
+
 }
