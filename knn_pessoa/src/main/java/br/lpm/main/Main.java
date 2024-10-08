@@ -54,7 +54,7 @@ public class Main {
   public static void main(String[] args) throws Exception {
     dataset = new Dataset();
     dataset.loadDataFromCSV(
-        "C:\\Users\\marco\\OneDrive\\Documentos\\GitHub\\programacao-modular\\knn_pessoa\\LPM -"
+        "C:\\Users\\Gabriela\\OneDrive\\Documentos\\GitHub\\programacao-modular\\programacao-modular\\knn_pessoa\\LPM -"
             + " Turma 1 - Cadastro de Pessoas.csv");
 
     System.out.println(dataset.size());
