@@ -1,26 +1,23 @@
 package br.lpm.business;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 public class Dataset {
-    private static final int MAX_PESSOAS = 100;
+    private static final int MAX_PESSOAS = 1000;
     private Pessoa[] pessoas = new Pessoa[MAX_PESSOAS];
     private int pessoasCadastradas = 0;
     private DistanceMeasure distanceMeasure;
 
-    public Dataset() {
+    /*public Dataset() {
         this.distanceMeasure = new DistanceMeasure(this);
     }
+        */
 
-    public void addPessoa(Pessoa pessoa) {
-        if (pessoa == null || pessoasCadastradas >= MAX_PESSOAS) {
-            return;
+     public void addPessoa(Pessoa pessoa) {
+        if (pessoasCadastradas < MAX_PESSOAS) {
+            pessoas[pessoasCadastradas++] = pessoa;
         }
-        for (int i = 0; i < pessoasCadastradas; i++) {
-            if (pessoas[i].equals(pessoa)) {
-                return;
-            }
-        }
-        pessoas[pessoasCadastradas] = pessoa;
-        pessoasCadastradas++;
     }
 
     public void removePessoa(Pessoa pessoa) {
@@ -294,7 +291,7 @@ public class Dataset {
         return calcularPercentual(totalPorMoradia);
     }
 
-    public Moradia modeMoradia() {
+   public Moradia modeMoradia() {
         int[] contador = new int[3];
 
         for (int i = 0; i < pessoasCadastradas; i++) {
@@ -508,5 +505,12 @@ public class Dataset {
         return (valor - minimo) / (maximo - minimo);
 
     }
+
+   /*  public void loadDataFromCSV(String fieldname) throws Exception {
+
+        try(BufferedReader file = new BufferedReader(new FileReader(fieldname))){
+
+        }
+    } */
 
 }

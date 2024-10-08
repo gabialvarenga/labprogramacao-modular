@@ -1,0 +1,62 @@
+<diagram program="umletino" version="15.1"><zoom_level>14</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>1176</x><y>98</y><w>434</w><h>308</h></coordinates><panel_attributes>NotaFiscal
+--
+-static contador: int
+-numero: int
+-cliente: String
+-automoveis: Automovel[10]
+-pecas: Peca[10]
+-servicos: Servico[10]
+-numAutomoveis:int, numPecas: int, numServicos:int
+--
++addAutomovel(a: Automovel): void
++addServico(s: Servico): void
++addPeca(p: Peca): void
++calcularTotal(): double
++exibirNota(): void
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>476</x><y>210</y><w>294</w><h>140</h></coordinates><panel_attributes>Automovel
+--
+-modelo: String
+-cor: Cor
+-ano: int
+--
++toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>546</x><y>406</y><w>294</w><h>182</h></coordinates><panel_attributes>Peca
+--
+-marca: Marca
+-descricao: String
+-isNova: boolean
+--
++getGarantia(): int
++isNova(): boolean
++toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>462</x><y>0</y><w>392</w><h>112</h></coordinates><panel_attributes>Servico
+--
+-descricao: String
+-horasTrabalhadas: int
+--
++ setHorasTrabalhadas(horasTrabalhadas: int)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>28</x><y>434</y><w>294</w><h>154</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+MARCAS
+--
+VW
+FIAT
+GM
+HYUNDAI
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>196</y><w>294</w><h>182</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Cor
+--
+BRANCO
+CINZA
+PRETO
+PRATA
+AZUL
+VERMELHO</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>756</x><y>210</y><w>448</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>300;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>826</x><y>294</y><w>378</w><h>224</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>250;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>42</y><w>364</w><h>168</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>240;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>266</y><w>224</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1</panel_attributes><additional_attributes>140;10;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>308</x><y>462</y><w>266</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1</panel_attributes><additional_attributes>170;10;10;30</additional_attributes></element></diagram>
