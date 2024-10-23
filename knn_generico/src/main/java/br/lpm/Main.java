@@ -1,8 +1,7 @@
-package br.lpm.main;
-
-import br.lpm.business.NotaFiscal;
+package br.lpm;
 
 public class Main {
     public static void main(String[] args) {
-    } 
+        System.out.println("Hello world!");
+    }
 }

@@ -6,9 +6,9 @@ public class Automovel {
     private int ano;
 
     public Automovel(String modelo, Cor cor, int ano) {
-        this.modelo = modelo;
-        this.cor = cor;
-        this.ano = ano;
+        this.setModelo(modelo);
+        this.setCor(cor);
+        this.setAno(ano);
     }
 
     public String getModelo() {

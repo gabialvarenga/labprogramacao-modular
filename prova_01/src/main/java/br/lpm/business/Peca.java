@@ -6,9 +6,9 @@ public class Peca {
     private boolean isNova;
     
     public Peca(Marca marca, String descricao, boolean isNova) {
-        this.marca = marca;
-        this.descricao = descricao;
-        this.isNova = isNova;
+        this.setMarca(marca);
+        this.setDescricao(descricao);
+        this.setNova(isNova);
     }
 
     public Marca getMarca() {
@@ -28,7 +28,7 @@ public class Peca {
     }
 
     public int Garantia(){
-        if(isNova){
+        if(isNova){ //se for true vai retornar que a garantia é de 365 dias
             return 365;
         } else {
             return 30;
@@ -36,7 +36,7 @@ public class Peca {
     }
 
     public boolean isNova() {
-        return isNova;
+        return isNova; // true
     }
 
     public void setNova(boolean isNova) {

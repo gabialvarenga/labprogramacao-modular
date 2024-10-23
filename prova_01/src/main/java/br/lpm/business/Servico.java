@@ -5,8 +5,8 @@ public class Servico {
     private int horasTrabalhadas;
 
     public Servico(String descricao, int horasTrabalhadas) {
-        this.descricao = descricao;
-        this.horasTrabalhadas = horasTrabalhadas;
+        this.setDescricao(descricao);
+        this.setHorasTrabalhadas(horasTrabalhadas);
     }
 
     public String getDescricao() {
