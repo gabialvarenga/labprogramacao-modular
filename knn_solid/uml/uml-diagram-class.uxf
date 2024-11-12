@@ -1,0 +1,134 @@
+<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><element><id>UMLClass</id><coordinates><x>432</x><y>18</y><w>198</w><h>84</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+Knn
+--
+-k: int
+--
+- calcDistances(attributes: DataPoint) : List&lt;Double&gt;
+- getNearest(int k): List&lt;DataPoint&gt;
+/+ &lt;&lt;abstract&gt;&gt; predict(attributes: DataPoint): Attribute/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>696</x><y>30</y><w>210</w><h>246</h></coordinates><panel_attributes>Package::br.lpm.data_structures
+DataSet
+--
+- attributeNames: List&lt;String&gt;
+- stateName: String
+--
++ addDataPoint(dataPoint: DataPoint): void
++ addDataPoints(dataPoints: List&lt;DataPoint&gt;): void
++ removeDataPoint(dataPoint: DataPoint): void
++ removeDataPoint(state: Object): void
++ removeDataPoint(index: int): void
++ clearDataPoints(): void
++ size(): int
++ getDataPoint(index: int): DataPoint
++ getDataPoint(state: Object): DataPoint
++ getDataPoints(): List&lt;DataPoint&gt;
++ addAttributeName(attributeName: String): void
++ addAttributeNames(attributeNames: List&lt;String&gt;): void
++ removeAttributeName(attributeName: String): void
++ removeAttributeName(index: int): void
++ clearAttributeNames(): void
++ sizeAttributeNames(): int
++ getAttributeName(index: int): String
++ getAttributeName(name: String): String
++ getAttributeNames(): List&lt;String&gt;
++ getStateName(): String
++ setStateName(stateName: String): void
++ toString(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>666</x><y>414</y><w>210</w><h>156</h></coordinates><panel_attributes>Package::br.lpm.data_structures
+DataPoint
+-
+- state: Attribute
+-
++ getAttributes(): List&lt;Attribute&gt;
++ getState(): Attribute
++ setState(state: Attribute): void
++ addAttribute(attribute: Attribute): void
++ addAttributes(attributes: List&lt;Attribute&gt;): void
++ getAttribute(index: int): Attribute
++ getAttribute(value: Object): Attribute
++ removeAttribute(attribute: Attribute): void
++ removeAttribute(value: Object): void
++ removeAttribute(index: int): void
++ clearAttributes(): void
++ sizeAttribute(): int
++ toString(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>762</x><y>270</y><w>30</w><h>156</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>10;10;10;240</additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>30</y><w>84</w><h>30</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+</panel_attributes><additional_attributes>120;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1056</x><y>468</y><w>120</w><h>66</h></coordinates><panel_attributes>Package::br.lpm.data_structures
+Attribute
+--
+-value: Object
+--
++ setValue(: T) : Attribute
++ getValue&lt;T&gt;(): T
++ toString() :  String</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>870</x><y>498</y><w>198</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m1=1
+m2=1..*</panel_attributes><additional_attributes>10;20;310;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>438</x><y>156</y><w>174</w><h>54</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+Metric
+--
+
+--
++distance(p1: DataPoint, p2: Datapoint): double
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>516</x><y>96</y><w>24</w><h>72</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>60</y><w>54</w><h>426</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;uses&gt;&gt;</panel_attributes><additional_attributes>10;10;40;10;30;690;70;690</additional_attributes></element><element><id>UMLClass</id><coordinates><x>294</x><y>384</y><w>246</w><h>66</h></coordinates><panel_attributes>EuclideanDistanceMetric
+--
++ distance(p1: DataPoint, p2: DataPoint): double
+- calculateAttributeDistance(value1: Object, value2: Object): double
+- calculateNumericDistance(n1: Number, n2: Number): double
+- calculateNonNumericDistance(value1: Object, value2: Object): double
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>402</x><y>174</y><w>48</w><h>222</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>60;10;10;10;10;350</additional_attributes></element><element><id>UMLClass</id><coordinates><x>444</x><y>318</y><w>168</w><h>30</h></coordinates><panel_attributes>FelizMetric
+--
+
+--
++distance(p1: DataPoint, p2: Datapoint): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>528</x><y>204</y><w>18</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>6</y><w>378</w><h>78</h></coordinates><panel_attributes>KnnClassifier
+--
++ predict(testPoint: DataPoint): Attribute
+- countStateOccurrences(dataPoints: List&lt;DataPoint&gt;, nearestIndexes: List&lt;Integer&gt;): Map&lt;Object, Integer&gt;
+- findMostFrequentState(stateCount: Map&lt;Object, Integer&gt;): Object
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>372</x><y>48</y><w>72</w><h>18</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>100;10;11;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>90</x><y>120</y><w>198</w><h>48</h></coordinates><panel_attributes>Package::br.lpm.business
+KnnRegressor
+--
+
+--
++predict(attributes: DataPoint): Attribute</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>282</x><y>96</y><w>192</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>300;10;300;70;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>966</x><y>24</y><w>138</w><h>54</h></coordinates><panel_attributes>Package::br.lpm.loaders
+&lt;&lt;interface&gt;&gt;
+DataLoader
+--
+--
+/+ load(filename: String, dataSet: DataSet)/
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1146</x><y>0</y><w>174</w><h>84</h></coordinates><panel_attributes>CsvLoader
+--
+- delimiter: char
+--
++ getDelimiter(): char
++ setDelimiter(delimiter: char): void
++ load(filename: String, dataSet: DataSet): void
+- loadHeader(line: String, dataSet: DataSet): void
+- parseDataPoint(line: String): DataPoint
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1098</x><y>36</y><w>60</w><h>18</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;80;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>954</x><y>144</y><w>150</w><h>48</h></coordinates><panel_attributes>DbLoader
+--
+- db: DataBase
+--
++ DbLoader(url_connection: String)
++ load(filename: String, dataSet: DataSet)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1020</x><y>72</y><w>24</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;20;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1146</x><y>138</y><w>126</w><h>54</h></coordinates><panel_attributes>_Parser_
+--
+--
+- Parser()
+_+ parse(: String): Object_
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1212</x><y>78</y><w>42</w><h>72</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;uses&gt;&gt;</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>42</y><w>78</w><h>24</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;uses&gt;&gt;</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>984</x><y>282</y><w>192</w><h>84</h></coordinates><panel_attributes>Package::br.lpm.data_structures
+NormalizedDataSet
+--
++ normalize(): DataSet
+- normalizeDataPoint(dataPoint: DataPoint): DataPoint
+- normalizeValue(value: Number): double
+- getMinValue(): double
+- getMaxValue(): double
++ toString(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>234</y><w>186</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;290;10;290;80</additional_attributes></element></diagram>
